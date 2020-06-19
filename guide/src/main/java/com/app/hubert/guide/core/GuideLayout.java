@@ -49,9 +49,9 @@ public class GuideLayout extends FrameLayout {
 
     public GuideLayout(Context context, GuidePage page, Controller controller) {
         super(context);
+        this.controller = controller;
         init();
         setGuidePage(page);
-        this.controller = controller;
     }
 
     private GuideLayout(Context context, AttributeSet attrs) {
@@ -68,10 +68,12 @@ public class GuideLayout extends FrameLayout {
         PorterDuffXfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
         mPaint.setXfermode(xfermode);
 
-        //设置画笔遮罩滤镜,可以传入BlurMaskFilter或EmbossMaskFilter，前者为模糊遮罩滤镜而后者为浮雕遮罩滤镜
-        //这个方法已经被标注为过时的方法了，如果你的应用启用了硬件加速，你是看不到任何阴影效果的
-        mPaint.setMaskFilter(new BlurMaskFilter(10, BlurMaskFilter.Blur.INNER));
-        //关闭当前view的硬件加速
+        if(controller.isUseEva()){
+            //设置画笔遮罩滤镜,可以传入BlurMaskFilter或EmbossMaskFilter，前者为模糊遮罩滤镜而后者为浮雕遮罩滤镜
+            //这个方法已经被标注为过时的方法了，如果你的应用启用了硬件加速，你是看不到任何阴影效果的
+            mPaint.setMaskFilter(new BlurMaskFilter(10, BlurMaskFilter.Blur.INNER));
+            //关闭当前view的硬件加速
+        }
         setLayerType(LAYER_TYPE_SOFTWARE, null);
 
         //ViewGroup默认设定为true，会使onDraw方法不执行，如果复写了onDraw(Canvas)方法，需要清除此标记

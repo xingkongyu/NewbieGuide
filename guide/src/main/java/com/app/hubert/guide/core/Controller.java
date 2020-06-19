@@ -55,6 +55,8 @@ public class Controller {
     private SharedPreferences sp;
     private int indexOfChild = -1;//使用anchor时记录的在父布局的位置
     private boolean isShowing;
+    /**是否使用阴影*/
+    private boolean useEva = true;
 
     public Controller(Builder builder) {
         this.activity = builder.activity;
@@ -64,6 +66,7 @@ public class Controller {
         this.onPageChangedListener = builder.onPageChangedListener;
         this.label = builder.label;
         this.alwaysShow = builder.alwaysShow;
+        this.useEva = builder.useEva;
         this.guidePages = builder.guidePages;
         showCounts = builder.showCounts;
 
@@ -314,4 +317,11 @@ public class Controller {
         }
     }
 
+    public boolean isUseEva() {
+        return useEva;
+    }
+
+    public void setUseEva(boolean useEva) {
+        this.useEva = useEva;
+    }
 }

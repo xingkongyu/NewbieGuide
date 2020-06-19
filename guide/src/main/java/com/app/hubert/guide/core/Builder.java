@@ -18,6 +18,7 @@ public class Builder {
     android.support.v4.app.Fragment v4Fragment;
     String label;
     boolean alwaysShow;//总是显示 default false
+    boolean useEva = false;//是否使用阴影浮雕效果，默认不开启
     View anchor;//锚点view
     int showCounts = 1;//显示次数 default once
     OnGuideChangedListener onGuideChangedListener;
@@ -67,6 +68,16 @@ public class Builder {
      */
     public Builder alwaysShow(boolean b) {
         this.alwaysShow = b;
+        return this;
+    }
+
+    /**
+     * 是否使用阴影
+     * @param b
+     * @return
+     */
+    public Builder useE(boolean b) {
+        this.useEva = b;
         return this;
     }
 
